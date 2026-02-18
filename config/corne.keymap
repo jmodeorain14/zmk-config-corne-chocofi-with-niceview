@@ -16,6 +16,13 @@
             bindings = <&email>;
             label = "EMAIL";
         };
+
+        save: save {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&save>;
+            label = "SAVE";
+        };
     };
 
     behaviors {
@@ -37,6 +44,17 @@
             tapping-term-ms = <280>;
             flavor = "balanced";
         };
+
+        weak: weak {
+            compatible = "zmk,behavior-hold-tap";
+            label = "WEAK";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <150>;
+        };
     };
 
     keymap {
@@ -50,10 +68,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-&none  &kp Q  &kp W  &kp F    &kp P       &kp B        &kp J      &kp L        &kp U      &kp Y    &kp SQT             &none
-&none  &kp A  &kp R  &kp S    &kp T       &kp G        &kp M      &kp N        &kp E      &kp I    &kp O               &none
-&none  &kp Z  &kp X  &kp C    &kp D       &kp V        &kp K      &kp H        &kp COMMA  &kp DOT  &hm SEMICOLON FSLH  &none
-                     &kp ESC  &lt 1 BSPC  &lt 2 TAB    &lt 2 RET  &lt 1 SPACE  &kp RALT
+&none  &kp Q         &kp W         &kp F             &kp P              &kp B        &kp J      &kp L              &kp U             &kp Y         &kp SQT             &none
+&none  &weak LGUI A  &weak LALT R  &shifthr LCTRL S  &shifthr LSHIFT T  &kp G        &kp M      &shifthr LSHIFT N  &shifthr LCTRL E  &weak RALT I  &kp O               &none
+&none  &kp Z         &kp X         &kp C             &kp D              &kp V        &kp K      &kp H              &kp COMMA         &kp DOT       &hm SEMICOLON FSLH  &none
+                                   &hm LC(BSPC) ESC  &lt 1 BSPC         &lt 2 TAB    &lt 2 RET  &lt 1 SPACE        &save
             >;
         };
 
